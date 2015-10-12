@@ -1,0 +1,8 @@
+#!/bin/bash
+
+#
+# Restart the network interface
+#
+ifdown eth0; ifup eth0
+
+
