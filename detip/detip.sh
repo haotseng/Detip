@@ -92,15 +92,15 @@ esac
    ip_result=`ping -c 1 $PING_IP  > /dev/null 2>&1 && echo "ok" || echo "err"` 
 
    if [ "$ip_result" != "ok" ]; then
-     err_cnt=`echo "$err_cnt+1" | bc`
+     err_cnt=$(($err_cnt+1))
    else
      err_cnt=0
    fi
 
    #---------------------------------------
-   # 連續錯誤3次, 則執行$ACTION_SCRIPT_NAME
+   # 連續錯誤10次, 則執行$ACTION_SCRIPT_NAME
    #---------------------------------------
-   if [ "$err_cnt" == "3" ]; then
+   if [ "$err_cnt" == "10" ]; then
      eval ${script_path}/${ACTION_SCRIPT_NAME} ${out_fd}
      err_cnt=0
    fi
